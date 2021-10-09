@@ -219,26 +219,37 @@
 </script>
 
 <main>
-	<div class="blockly-container">
-		<BlocklyComponent
-			{config}
-			locale={en}
-			bind:workspace
-			bind:transform
-			on:change={onChange}
-		/>
+	<div>
+		<h1>Config</h1>
+		<h1>Data</h1>
+		<pre>{code}</pre>
 	</div>
-	<pre>{code}</pre>
+	<div>
+		<h1>Demo</h1>
+		<div class="blockly-container">
+			<BlocklyComponent
+				{config}
+				locale={en}
+				bind:workspace
+				bind:transform
+				on:change={onChange}
+			/>
+		</div>
+	</div>
 </main>
 
 <style>
 	main {
-		width: 800px;
-		margin: 150px auto;
+		display: flex;
+		flex-direction: row;
+	}
+
+	main > div {
+		width: 50%;
+		padding: 2rem;
 	}
 
 	.blockly-container {
-		width: 800px;
 		height: 600px;
 
 		border: 1px solid black;
