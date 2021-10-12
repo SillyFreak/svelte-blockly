@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+
+		
+
+		<link rel="modulepreload" href="/_app/start-7ce30bbc.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-40b4b721.js">
+		<link rel="modulepreload" href="/_app/layout.svelte-af1fd06a.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-274736ff.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/index.svelte-268e994d.css">
+
+		<script type="module">
+			import { start } from "/_app/start-7ce30bbc.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/layout.svelte-af1fd06a.js"),
+						import("/_app/pages/index.svelte-274736ff.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "/",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<main class="svelte-u6y8d5"><div class="svelte-u6y8d5"><h1>Config</h1>
+		<div><select><option value="en">en</option><option value="de">de</option></select>
+			<button>Save Editor</button>
+			<button disabled>Restore Editor</button></div>
+		<h2>Current JS Code &amp; Transform</h2>
+		<p>undefined</p>
+		<pre class="svelte-u6y8d5"></pre>
+		<h2>Saved Blockly XML &amp; transform</h2>
+		<p>(none)</p></div>
+	<div class="svelte-u6y8d5"><h1>Demo</h1>
+		<div class="blockly-container svelte-u6y8d5"><div class="root svelte-18o0oby"></div></div></div>
+</main>
+
+
+
+			
+		</div>
+	</body>
+</html>
