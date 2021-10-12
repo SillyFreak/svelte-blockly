@@ -34,63 +34,63 @@ In this example, `svelte:component` is used to select a specific component for e
 
 ```svelte
 <script lang="ts">
-	import Blockly from 'blockly/core';
-	
-	import En from 'blockly/msg/en';
-	import 'blockly/blocks';
-	import 'blockly/javascript';
+  import Blockly from 'blockly/core';
+  
+  import En from 'blockly/msg/en';
+  import 'blockly/blocks';
+  import 'blockly/javascript';
 
-	import BlocklyComponent, { Locale, Transform } from 'svelte-blockly';
+  import BlocklyComponent, { Locale, Transform } from 'svelte-blockly';
 
-	const en: Locale = {
-		rtl: false,
-		msg: {
-			...En,
-			...
-		},
-	};
+  const en: Locale = {
+    rtl: false,
+    msg: {
+      ...En,
+      ...
+    },
+  };
 
-	const config = {
-		toolbox: ...,
-		...
-	};
+  const config = {
+    toolbox: ...,
+    ...
+  };
 
-	let workspace: Blockly.WorkspaceSvg;
-	let code = '';
+  let workspace: Blockly.WorkspaceSvg;
+  let code = '';
 
-	function onChange() {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const lang = (Blockly as any)['JavaScript'];
-		try {
-			code = lang.workspaceToCode(workspace);
-		} catch (_err) {
-			// Happens e.g. when deleting a function that is used somewhere.
-			// Blockly will quickly recover from this, so it's not a big deal.
-			// Just make sure the app doesn't crash until then.
-		}
-	}
+  function onChange() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lang = (Blockly as any)['JavaScript'];
+    try {
+      code = lang.workspaceToCode(workspace);
+    } catch (_err) {
+      // Happens e.g. when deleting a function that is used somewhere.
+      // Blockly will quickly recover from this, so it's not a big deal.
+      // Just make sure the app doesn't crash until then.
+    }
+  }
 </script>
 
 <div class="blockly-container">
-	<BlocklyComponent
-		{config}
-		locale={en}
-		bind:workspace
-		on:change={onChange}
-	/>
+  <BlocklyComponent
+    {config}
+    locale={en}
+    bind:workspace
+    on:change={onChange}
+  />
 </div>
 <pre>{code}</pre>
 
 <style>
-	.blockly-container {
-		height: 600px;
+  .blockly-container {
+    height: 600px;
 
-		border: 1px solid black;
-	}
+    border: 1px solid black;
+  }
 
-	pre {
-		overflow-x: auto;
-	}
+  pre {
+    overflow-x: auto;
+  }
 </style>
 ```
 
