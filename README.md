@@ -1,6 +1,6 @@
 # svelte-blockly
 
-[Blockly](https://developers.google.com/blockly/) Wrapper for Svelte. The `Blockly` component does roughly the work of [`Blockly.inject()`], plus some handling of localization and transform and change tracking.
+[Blockly](https://developers.google.com/blockly/) Wrapper for Svelte. The `Blockly` component does roughly the work of [`Blockly.inject()`](https://developers.google.com/blockly/reference/js/Blockly#.inject), plus some handling of localization and change tracking.
 
 This was extracted from a personal project, so its initial scope was rather limited. Expect rough edges, but bug reports and contributions are welcome!
 
