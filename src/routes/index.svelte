@@ -224,7 +224,7 @@
 		} catch (_err) {
 			// Happens e.g. when deleting a function that is used somewhere.
 			// Blockly will quickly recover from this, so it's not a big deal.
-			// Just make sure the IDE doesn't crash until then.
+			// Just make sure the app doesn't crash until then.
 		}
 	}
 </script>

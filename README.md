@@ -1,38 +1,97 @@
 # svelte-blockly
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+[Blockly](https://developers.google.com/blockly/) Wrapper for Svelte. The `Blockly` component does roughly the work of [`Blockly.inject()`], plus some handling of localization and transform and change tracking.
 
-## Creating a project
+This was extracted from a personal project, so its initial scope was rather limited. Expect rough edges, but bug reports and contributions are welcome!
 
-If you're seeing this, you've probably already done this step. Congrats!
+**Features**
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+- configuration like [`Blockly.inject()`]
+- automatic workspace refresh on configuration & locale changes
+- reactive transform prop - change or monitor the workspace transform
+- change event
+- automatic resizing of the layout within its containing HTML element
 
-# create a new project in my-app
-npm init svelte@next my-app
+## Installation & development
+
+An **npm package** does not exist yet. If reception is good, I will publish this and develop it further.
+
+```sh
+# clone this repo and package the library
+git clone https://github.com/SillyFreak/svelte-blockly
+cd svelte-blockly
+npm i
+npm run package
+
+# add it & golden-layout to your own project
+cd ../your-own-project
+npm i blockly ../svelte-blockly/package
 ```
 
-> Note: the `@next` is temporary
+## simple example
 
-## Developing
+In this example, `svelte:component` is used to select a specific component for each tab, and the `componentState` object is passed as props to that component:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```svelte
+<script lang="ts">
+	import Blockly from 'blockly/core';
+	
+	import En from 'blockly/msg/en';
+	import 'blockly/blocks';
+	import 'blockly/javascript';
 
-```bash
-npm run dev
+	import BlocklyComponent, { Locale, Transform } from 'svelte-blockly';
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+	const en: Locale = {
+		rtl: false,
+		msg: {
+			...En,
+			...
+		},
+	};
+
+	const config = {
+		toolbox: ...,
+		...
+	};
+
+	let workspace: Blockly.WorkspaceSvg;
+	let code = '';
+
+	function onChange() {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const lang = (Blockly as any)['JavaScript'];
+		try {
+			code = lang.workspaceToCode(workspace);
+		} catch (_err) {
+			// Happens e.g. when deleting a function that is used somewhere.
+			// Blockly will quickly recover from this, so it's not a big deal.
+			// Just make sure the app doesn't crash until then.
+		}
+	}
+</script>
+
+<div class="blockly-container">
+	<BlocklyComponent
+		{config}
+		locale={en}
+		bind:workspace
+		on:change={onChange}
+	/>
+</div>
+<pre>{code}</pre>
+
+<style>
+	.blockly-container {
+		height: 600px;
+
+		border: 1px solid black;
+	}
+
+	pre {
+		overflow-x: auto;
+	}
+</style>
 ```
 
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+You can also run this repo as an app; the example code is in [routes/index.svelte](src/routes/index.svelte) demonstates the features of the library.
