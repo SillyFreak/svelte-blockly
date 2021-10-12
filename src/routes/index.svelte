@@ -225,7 +225,7 @@
 	let code = '';
 
 	function handleSave() {
-		const xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
+		const xml = Blockly.Xml.domToPrettyText(Blockly.Xml.workspaceToDom(workspace));
 		saved = [xml, transform];
 	}
 
