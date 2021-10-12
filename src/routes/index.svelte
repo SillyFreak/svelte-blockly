@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Blockly from 'blockly/core';
+	import Blockly from 'blockly/core.js';
 	
-	import En from 'blockly/msg/en';
-	import De from 'blockly/msg/de';
-	import 'blockly/blocks';
-	import 'blockly/javascript';
+	import En from 'blockly/msg/en.js';
+	import De from 'blockly/msg/de.js';
+	import 'blockly/blocks.js';
+	import 'blockly/javascript.js';
 
 	import BlocklyComponent, { Locale, Transform } from '../lib';
 

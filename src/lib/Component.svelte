@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Blockly from 'blockly/core';
+	import Blockly from 'blockly/core.js';
 
 	export let config: Blockly.BlocklyOptions = {};
 	export let locale: Locale;
