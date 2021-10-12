@@ -21,6 +21,13 @@
 	export let workspace: Blockly.WorkspaceSvg = undefined;
 	export let transform: Transform = undefined;
 
+	$: {
+		// evaluate transform to establish a reactive dependency
+		transform;
+
+		applyTransform();
+	}
+
 	const dispatch = createEventDispatcher();
 	let width: number, height: number;
 
@@ -66,9 +73,7 @@
 			};
 
 			if (transform !== undefined) {
-				const { scrollX, scrollY, scale } = transform;
-				workspace.setScale(scale);
-				workspace.scroll(scrollX, scrollY);
+				applyTransform();
 			} else {
 				const { scrollX, scrollY, scale } = workspace;
 				transform = { scrollX, scrollY, scale };
@@ -89,6 +94,16 @@
 				workspace = undefined;
 			},
 		};
+	}
+
+	function applyTransform() {
+		if (workspace === undefined) return;
+
+		const { scrollX, scrollY, scale } = transform;
+		if (scrollX !== workspace.scrollX || scrollY !== workspace.scrollY || scale !== workspace.scale) {
+			workspace.setScale(scale);
+			workspace.scroll(scrollX, scrollY);
+		}
 	}
 
 	$: {

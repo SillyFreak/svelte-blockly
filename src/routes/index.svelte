@@ -203,7 +203,18 @@
 	let transform: Transform;
 	let workspace: Blockly.WorkspaceSvg;
 
+	let saved: [string, Transform] | undefined = undefined;
 	let code = '';
+
+	function handleSave() {
+		const xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace));
+		saved = [xml, transform];
+	}
+
+	function handleRestore() {
+		Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(saved[0]), workspace);
+		transform = saved[1];
+	}
 
 	function onChange() {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -221,7 +232,19 @@
 <main>
 	<div>
 		<h1>Config</h1>
-		<h1>Data</h1>
+		<div>
+			<button on:click={handleSave}>Save Editor</button>
+			<button on:click={handleRestore} disabled={saved === undefined}>Restore Editor</button>
+		</div>
+		<h2>Saved Blockly XML & transform</h2>
+		{#if saved !== undefined}
+			<p>{JSON.stringify(saved[1])}</p>
+			<pre>{saved[0]}</pre>
+		{:else}
+			<p>(none)</p>
+		{/if}
+		<h2>Current JS Code & Transform</h2>
+		<p>{JSON.stringify(transform)}</p>
 		<pre>{code}</pre>
 	</div>
 	<div>
@@ -253,5 +276,9 @@
 		height: 600px;
 
 		border: 1px solid black;
+	}
+
+	pre {
+		overflow-x: auto;
 	}
 </style>
