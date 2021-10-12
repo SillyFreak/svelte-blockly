@@ -2,6 +2,7 @@
 	import Blockly from 'blockly/core';
 	
 	import En from 'blockly/msg/en';
+	import De from 'blockly/msg/de';
 	import 'blockly/blocks';
 	import 'blockly/javascript';
 
@@ -20,6 +21,22 @@
 			...En,
 		},
 	};
+
+	const de: Locale = {
+		rtl: false,
+		msg: {
+			CAT_LOGIC: 'Logik',
+			CAT_LOOPS: 'Schleifen',
+			CAT_MATH: 'Mathe',
+			CAT_LISTS: 'Listen',
+			CAT_VARIABLES: 'Variablen',
+			CAT_FUNCTIONS: 'Funktionen',
+			CAT_TEXT: 'Text',
+			...De,
+		},
+	};
+
+	const locales: Record<string, Locale> = { en, de };
 
 	const toolbox: Blockly.utils.toolbox.ToolboxDefinition = {
 		kind: undefined,
@@ -200,6 +217,7 @@
 		trashcan: false,
 	};
 
+	let locale = 'en';
 	let transform: Transform;
 	let workspace: Blockly.WorkspaceSvg;
 
@@ -233,6 +251,11 @@
 	<div>
 		<h1>Config</h1>
 		<div>
+			<select bind:value={locale}>
+				{#each Object.keys(locales) as locale}
+					<option value={locale}>{locale}</option>
+				{/each}
+			</select>
 			<button on:click={handleSave}>Save Editor</button>
 			<button on:click={handleRestore} disabled={saved === undefined}>Restore Editor</button>
 		</div>
@@ -252,7 +275,7 @@
 		<div class="blockly-container">
 			<BlocklyComponent
 				{config}
-				locale={en}
+				locale={locales[locale]}
 				bind:workspace
 				bind:transform
 				on:change={onChange}
