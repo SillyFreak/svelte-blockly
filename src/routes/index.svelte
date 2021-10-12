@@ -259,6 +259,9 @@
 			<button on:click={handleSave}>Save Editor</button>
 			<button on:click={handleRestore} disabled={saved === undefined}>Restore Editor</button>
 		</div>
+		<h2>Current JS Code & Transform</h2>
+		<p>{JSON.stringify(transform)}</p>
+		<pre>{code}</pre>
 		<h2>Saved Blockly XML & transform</h2>
 		{#if saved !== undefined}
 			<p>{JSON.stringify(saved[1])}</p>
@@ -266,9 +269,6 @@
 		{:else}
 			<p>(none)</p>
 		{/if}
-		<h2>Current JS Code & Transform</h2>
-		<p>{JSON.stringify(transform)}</p>
-		<pre>{code}</pre>
 	</div>
 	<div>
 		<h1>Demo</h1>
