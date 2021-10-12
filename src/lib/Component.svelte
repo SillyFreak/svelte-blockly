@@ -28,7 +28,9 @@
 		applyTransform();
 	}
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{
+		'change': undefined;
+	}>();
 	let width: number, height: number;
 
 	type InjectParams = {
