@@ -29,7 +29,7 @@
 	}
 
 	const dispatch = createEventDispatcher<{
-		'change': undefined;
+		change: undefined;
 	}>();
 	let width: number, height: number;
 
@@ -102,7 +102,11 @@
 		if (workspace === undefined) return;
 
 		const { scrollX, scrollY, scale } = transform;
-		if (scrollX !== workspace.scrollX || scrollY !== workspace.scrollY || scale !== workspace.scale) {
+		if (
+			scrollX !== workspace.scrollX ||
+			scrollY !== workspace.scrollY ||
+			scale !== workspace.scale
+		) {
 			workspace.setScale(scale);
 			workspace.scroll(scrollX, scrollY);
 		}

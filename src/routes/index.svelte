@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Blockly from 'blockly/core.js';
-	
+
 	import En from 'blockly/msg/en.js';
 	import De from 'blockly/msg/de.js';
 	import 'blockly/blocks.js';
