@@ -8,7 +8,7 @@ This was extracted from a personal project, so its initial scope was rather limi
 
 **Features**
 
-- configuration like [`Blockly.inject()`]
+- configuration like [`Blockly.inject()`](https://developers.google.com/blockly/reference/js/Blockly#.inject)
 - automatic workspace refresh on configuration & locale changes
 - reactive transform prop - change or monitor the workspace transform
 - change event
