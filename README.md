@@ -4,6 +4,8 @@
 
 This was extracted from a personal project, so its initial scope was rather limited. Expect rough edges, but bug reports and contributions are welcome!
 
+[**Live Demo**](https://sillyfreak.github.io/svelte-blockly/)
+
 **Features**
 
 - configuration like [`Blockly.inject()`]
@@ -94,4 +96,4 @@ In this example, `svelte:component` is used to select a specific component for e
 </style>
 ```
 
-You can also run this repo as an app; the example code is in [routes/index.svelte](src/routes/index.svelte) demonstates the features of the library.
+You can also run this repo as an app ([live demo](https://sillyfreak.github.io/svelte-blockly/)); the example code is in [routes/index.svelte](src/routes/index.svelte) and demonstates the features of the library.
