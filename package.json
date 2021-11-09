@@ -1,6 +1,6 @@
 {
 	"name": "svelte-blockly",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Blockly Wrapper for Svelte",
 	"keywords": [
 		"svelte",

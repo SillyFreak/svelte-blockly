@@ -16,7 +16,14 @@ This was extracted from a personal project, so its initial scope was rather limi
 
 ## Installation & development
 
-An **npm package** does not exist yet. If reception is good, I will publish this and develop it further.
+This library can be installed from NPM:
+
+```sh
+# from NPM
+npm i svelte-blockly
+```
+
+For development, clone the repo and add the dependency as shown:
 
 ```sh
 # clone this repo and package the library
@@ -25,7 +32,7 @@ cd svelte-blockly
 npm i
 npm run package
 
-# add it & golden-layout to your own project
+# add it & blockly to your own project
 cd ../your-own-project
 npm i blockly ../svelte-blockly/package
 ```
